@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closure-handson</title>
+    <style>
+        body{
+            background-color: #d4cece;
+        }
+        h2{
+            color: #a52a2a;
+        }
+        h3{
+            color: #078107;
+        }
+        pre{
+            font-size: large;
+        }
+    </style>
+</head>
+<body>
+    <h2>Q1-</h2>
+    <pre>
+        function counter(){
+            var counter = 0;
+
+            function IncreaseCounter() {
+                return counter += 1;
+            };
+
+             return IncreaseCounter;
+        }
+
+        var counter = counter();
+        alert(counter());
+        alert(counter());
+        alert(counter());
+        alert(counter());
+    </pre>
+    <h3>Ans:</h3>
+    <span>Output:</span>
+    <pre>
+        1
+        2
+        3
+        4
+    </pre>
+    <p><b>Explanation:</b> In this question function name is counter()
+        call the function outside of the function with assigned to new variable that
+        variable name counter and in function functional scope varible name  counter=0
+        and then in the alret calling the inner function and called 4 times alert(counter())
+        and  main funcation have functional scope variable and calling inner function 4 times
+        and  get the output.</p>
+    <h2>Q2-</h2>
+    <pre>
+        let count = 0;
+        (function () {
+            if (count === 0) {
+                let count = 1;
+                console.log(count); // What is logged?
+            }
+            console.log(count); // What is logged?
+        })();
+    </pre>
+    <h3>Ans:</h3>
+    <span>Output:</span>
+    <pre>
+        1
+        0
+    </pre>
+    <p><b>Explanation:</b> In this code global variable count = 0 and called one annonamous function
+        and in the function if count === 0 then one more varible let count = 1 in the inside of if block
+        and if console.log(count); here get 1 because of block level scope level are same name variable there so
+        and console.log (count) statement write at out of the block so get 0 and inside of the function we don't
+        have counter name varible so check with global level then find the variable that varible have 0.</p>
+    <h2>Q3-</h2>
+    <pre>
+        for (var i = 0; i < 3; i++) {
+            setTimeout(function log() {
+              console.log(i); // What is logged?
+            }, 1000);
+          }
+    </pre>
+    <h3>Ans:</h3>
+    <span>Output:</span>
+    <pre>
+        3
+        3
+        3
+    </pre>
+    <p><b>Explanation:</b> In this question have a for loop with setTimeout() with one function log()
+        and setTimeout method has 1000 mile/sconds so setTimeout will execute after one second in this for loop
+        itarate three times soo finally i value is 3 that's why after completion of one sec we get the output.</p>
+    <h2>Q4-Write a code to calculate area of a rectangle using inner function. In this case outer function should accept parameter length and inner function should accept parameter breadth.</h2>
+    <pre>
+        function outer_fun(length){
+            function inner-fun(width){
+                return( length * breadth)
+            }
+            return inner-fun
+            
+        }
+        let result=outer_fun(8)
+        console.log(result(2))
+    </pre>
+    <h3>Ans:</h3>
+    <span>Output:</span>
+    <pre>
+        16
+    </pre>
+    <p><b>Explanation:</b> In this question  i have taken one outer function and one inner function for getting area of the rectangle
+        i have called outer function with parameter length with value '8' and outer function takes the length and 
+        return to the inner function ,at the same we called inner function with parameter breadth with value so outer function result stored in 
+        variable so we called inner function result(2). and get the output.</p>
+    <h2>Q.5- Take a variable in outer function and create an inner function to
+        increase the counter every time it is called</h2>
+    <pre>
+        function outer_fun(){
+            var count=
+            function inner_fun(){
+                return ++count
+            }
+            return inner_fun
+            
+        }
+        let results=outer_fun()
+        console.log(results())
+        console.log(results())
+        console.log(results())
+        console.log(results())
+    </pre>
+    <h3>Ans:</h3>
+    <span>Output:</span>
+    <pre>
+        1
+        2
+        3
+        4
+    </pre>
+    <p><b>Explanation:</b> in this question if call the inner function with outer function variable 
+        refrence and how many times called inner function count will be increase and get the output.</p>
+    <h2>Q.6-</h2>
+    <pre>
+        Print Output
+
+        var a = 12;
+        (function () {
+            alert(a);
+        })();
+    </pre>
+    <h3>Ans:</h3>
+    <span>Output:</span>
+    <pre>
+        12
+    </pre>
+    <p><b>Explanation:</b>In this question one annonamous function and outside global variable with value like
+        var a=12, but inside side of used that variable with alert(a) so, there is no local varible 'a' then it's search in globly 
+        that got 12 answer</p>
+    <h2>Q.7-</h2>
+    <pre>
+        var a = 10;
+        var x = (function () {
+            var a = 12;
+            return function () {
+                alert(a);
+            };
+        })();
+        x();
+    </pre>
+    <h3>Ans:</h3>
+    <span>Output:</span>
+    <pre>
+        12
+    </pre>
+    <p><b>Explanation:</b> In this question same logic like Q.6 , but here they were added return to called annonamous function
+        inside of inner function and variable also in functional scope and if use the variable inside of annonamous function
+        then it will take functional scope variable only</p>
+    <h2>Q.8-</h2>
+    <pre>
+        var globalVar = "xyz";
+
+        (function outerFunc(outerArg) {
+            var outerVar = 'a';
+    
+            (function innerFunc(innerArg) {
+                var innerVar = 'b';
+    
+                console.log(
+                "outerArg = " + outerArg + "\n" +
+                "innerArg = " + innerArg + "\n" +
+                "outerVar = " + outerVar + "\n" +
+                "innerVar = " + innerVar + "\n" +
+                "globalVar = " + globalVar);
+    
+            })(456);
+        })(123);
+    </pre>
+    <h3>Ans:</h3>
+    <span>Output:</span>
+    <pre>
+        outerArg = 123
+        innerArg = 456
+        outerVar = a
+        innerVar = b
+        globalVar = xyz
+    </pre>
+    <p><b>Explanation:</b> In this question two anonymous functions, one is  outer function and one is  inner function  with 2 diffrent parameters
+        and inside of functions declared varable with value and passing value through the parameters and there is one statment 
+        for print the values and based on varible names with values will display and used global varible also.</p>
+</body>
+</html>
